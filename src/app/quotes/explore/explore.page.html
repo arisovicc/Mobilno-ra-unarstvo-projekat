@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>quotes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <app-quote-element *ngFor="let quote of quotes" [quote]="quote" [routerLink]="quote.id"></app-quote-element>
+  </ion-list>
+
+  <ion-buttons class="ion-justify-content-center">
+    <ion-button routerLink="/fun-facts" color="tertiary" fill="solid">
+      Fun facts
+    </ion-button>
+  </ion-buttons>
+</ion-content>
