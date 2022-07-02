@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
 
@@ -13,11 +14,21 @@ const routes: Routes = [
     //loadChildern se koristi jer koristimo koncept LazyLoading sto znaci kod modula neke komponente se ucitava tek
     //kada je to potrebno
     path: 'quotes',
-    loadChildren: () => import('./quotes/quotes.module').then( m => m.QuotesPageModule)
+    loadChildren: () => import('./quotes/quotes.module').then( m => m.QuotesPageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'fun-facts',
-    loadChildren: () => import('./fun-facts/fun-facts.module').then( m => m.FunFactsPageModule)
+    loadChildren: () => import('./fun-facts/fun-facts.module').then( m => m.FunFactsPageModule),
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'log-in',
+    loadChildren: () => import('./auth/log-in/log-in.module').then( m => m.LogInPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },
 ];
 

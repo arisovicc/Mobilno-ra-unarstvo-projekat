@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ExplorePage
   },
   {
-    path: 'quoteId',
+    path: ':quoteId',
     loadChildren: () => import('./quote-details/quote-details.module').then( m => m.QuoteDetailsPageModule)
   }
 ];

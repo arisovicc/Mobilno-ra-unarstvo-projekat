@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Quote} from '../../quote.model';
+import {Quote} from "../../quote.model";
+import {ActivatedRoute} from "@angular/router";
+import {QuotesService} from "../../quotes.service";
 
 @Component({
   selector: 'app-quote-details',
@@ -7,12 +9,14 @@ import {Quote} from '../../quote.model';
   styleUrls: ['./quote-details.page.scss'],
 })
 export class QuoteDetailsPage implements OnInit {
-quote: Quote = {id: 'q1', author: 'Horace', text: 'Carpe diem.', imageUrl:
-    'https://img.freepik.com/vecteurs-libre/homme-affaires-caractere-avatar-isole_24877-60111.jpg?w=2000'};
+  quote: Quote;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private quotesService: QuotesService) { }
 
   ngOnInit() {
-  }
+    this.route.paramMap.subscribe(paramMap => {
+      this.quote = this.quotesService.getQuote(paramMap.get('quoteId'));
+    });
 
+  }
 }
